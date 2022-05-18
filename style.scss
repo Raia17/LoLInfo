@@ -1,0 +1,33 @@
+$primary-b: rgb(16, 16, 41);
+$primary-l: rgb(25, 25, 63);
+$primary-d: rgb(13, 13, 28);
+$primary-a: rgba(16, 16, 41, 0.7);
+
+$secondary-b: rgb(198, 161, 67);
+$secondary-l: rgb(235, 196, 97);
+$secondary-d: rgb(159, 127, 48);
+$secondary-a: rgba(198, 161, 67, 0.7);
+
+
+body {
+
+}
+
+
+.champion-section-tabs-tab-info-bar {
+    width: 100%;
+    height: 1rem;
+
+    background-color: gray;
+    position: relative;
+
+    &::after {
+        content: '';
+        position: absolute;
+
+        width: var(--value);
+        height: 100%;
+        background-color: red;
+        z-index: 1;
+    }
+}

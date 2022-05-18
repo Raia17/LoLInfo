@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
-    <script src="champion.js"></script>
+    <script src="script.js" defer></script>
     <title>Document</title>
 </head>
 <body>
@@ -17,10 +17,129 @@
 
     <main>
         <div class="hero-section">
+            <div class="hero-section-champ">
+                <h1 class="hero-section-champ-name">TESTE</h1>               <!-- AQUI -->
+                <h3 class="hero-section-champ-title">Teste</h3>              <!-- AQUI -->
+            </div>
             <div class="hero-section-img">
-                <img src="" alt="">
+                <img src="" alt="">                                          <!-- AQUI -->
+            </div>
+
+            <div class="hero-section-menu">
+                <div class="hero-section-menu-box">
+
+                </div>
             </div>
         </div>
+
+        <div class="blackout-section"></div>
+
+        <div class="lore-section">
+            <div class="lore-section-box">
+                <div class="lore-section-box-header">
+                    <h1 class="lore-section-box-header-title">Lore</h1>     <!-- AQUI -->
+                </div>
+                <div class="lore-section-box-article">
+                    <p class="lore-section-box-article-body">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Unde, facere! Quibusdam asperiores architecto quisquam dolore nostrum nulla exercitationem eos itaque dicta harum fuga, quos minima magnam pariatur illo, molestias ut!</p>       <!-- AQUI -->
+                </div>
+            </div>
+        </div>
+
+        <div class="theme-transition-section"></div>
+
+        <div class="champion-section">
+            <div class="champion-section-background">
+                <img src="" alt="" class="champion-section-background-img">
+            </div>
+
+            <div class="champion-section-navbar">
+                <div class="champion-section-navbar-item">
+                    <button class="champion-section-navbar-item-btn active">Status</button>
+                </div>
+                <div class="champion-section-navbar-item">
+                    <button class="champion-section-navbar-item-btn">Abilities</button>
+                </div>
+                <div class="champion-section-navbar-item">
+                    <button class="champion-section-navbar-item-btn">Skins</button>
+                </div>
+            </div>
+
+            <div class="champion-section-tabs">
+                <div class="champion-section-tabs-tab stats active">
+                    <div class="champion-section-tabs-tab-info">
+                        <h4 class="champion-section-tabs-tab-info-stat">Attack</h4>
+                        <div class="champion-section-tabs-tab-info-bar"></div>
+                    </div>
+                    <div class="champion-section-tabs-tab-info">
+                        <h4 class="champion-section-tabs-tab-info-stat">Defense</h4>
+                        <div class="champion-section-tabs-tab-info-bar"></div>
+                    </div>
+                    <div class="champion-section-tabs-tab-info">
+                        <h4 class="champion-section-tabs-tab-info-stat">Magic</h4>
+                        <div class="champion-section-tabs-tab-info-bar"></div>
+                    </div>
+                    <div class="champion-section-tabs-tab-info">
+                        <h4 class="champion-section-tabs-tab-info-stat">Difficulty</h4>
+                        <div class="champion-section-tabs-tab-info-bar"></div>
+                    </div>
+                </div>
+
+                <div class="champion-section-tabs-tab abilities">
+                    <div class="champion-section-tabs-tab-abilities">
+                        <div class="champion-section-tabs-tab-abilities-ability">
+                            <h4>Passive</h4>
+                            <div class="champion-section-tabs-tab-abilities-ability-header"></div>
+                            <div class="champion-section-tabs-tab-abilities-ability-img">
+                                <img src="" alt="">
+                            </div>
+                            <div class="champion-section-tabs-tab-abilities-ability-desc"></div>
+                        </div>
+                        <div class="champion-section-tabs-tab-abilities-ability">
+                            <h4>Q</h4>
+                            <div class="champion-section-tabs-tab-abilities-ability-header"></div>
+                            <div class="champion-section-tabs-tab-abilities-ability-img">
+                                <img src="" alt="">
+                            </div>
+                            <div class="champion-section-tabs-tab-abilities-ability-desc"></div>
+                        </div>
+                        <div class="champion-section-tabs-tab-abilities-ability">
+                            <h4>W</h4>
+                            <div class="champion-section-tabs-tab-abilities-ability-header"></div>
+                            <div class="champion-section-tabs-tab-abilities-ability-img">
+                                <img src="" alt="">
+                            </div>
+                            <div class="champion-section-tabs-tab-abilities-ability-desc"></div>
+                        </div>
+                        <div class="champion-section-tabs-tab-abilities-ability">
+                            <h4>E</h4>
+                            <div class="champion-section-tabs-tab-abilities-ability-header"></div>
+                            <div class="champion-section-tabs-tab-abilities-ability-img">
+                                <img src="" alt="">
+                            </div>
+                            <div class="champion-section-tabs-tab-abilities-ability-desc"></div>
+                        </div>
+                        <div class="champion-section-tabs-tab-abilities-ability">
+                            <h4>Ultimate</h4>
+                            <div class="champion-section-tabs-tab-abilities-ability-header"></div>
+                            <div class="champion-section-tabs-tab-abilities-ability-img">
+                                <img src="" alt="">
+                            </div>
+                            <div class="champion-section-tabs-tab-abilities-ability-desc"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="champion-section-tabs-tab skins">
+                    <h3 class="champion-section-tabs-tab-skin-header">Skin Name</h3>
+                    <img src="" alt="" class="champion-section-tabs-tab-skin-img">
+                    <div class="champion-section-tabs-tab-skin-handlers">
+                        <button id="previous">«</button>
+                        <button id="next">»</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
     </main>
 </body>
 </html>

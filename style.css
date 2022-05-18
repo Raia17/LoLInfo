@@ -1,0 +1,16 @@
+.champion-section-tabs-tab-info-bar {
+  width: 100%;
+  height: 1rem;
+  background-color: gray;
+  position: relative;
+}
+
+.champion-section-tabs-tab-info-bar::after {
+  content: '';
+  position: absolute;
+  width: var(--value);
+  height: 100%;
+  background-color: red;
+  z-index: 1;
+}
+/*# sourceMappingURL=style.css.map */
