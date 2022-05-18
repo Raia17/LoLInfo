@@ -8,26 +8,298 @@ $secondary-l: rgb(235, 196, 97);
 $secondary-d: rgb(159, 127, 48);
 $secondary-a: rgba(198, 161, 67, 0.7);
 
+$title-font: 'Mulish', sans-serif;
+
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@200;300;400;500;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,900;1,900&display=swap');
+
+*, *::after, *::before {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
 body {
-
+    background-color: $primary-b;
+    color: white;
+    font-family: 'Nunito', sans-serif;
 }
 
-
-.champion-section-tabs-tab-info-bar {
+nav {
     width: 100%;
-    height: 1rem;
+    position: absolute;
+    z-index: 100;
 
-    background-color: gray;
-    position: relative;
+    & .search-bar {
+        width: calc(min(400px, 100%));
+        padding: 1rem 1rem;
+        float: right;
 
-    &::after {
-        content: '';
-        position: absolute;
+        & #search-bar {
+            width: 100%;
 
-        width: var(--value);
-        height: 100%;
-        background-color: red;
-        z-index: 1;
+            padding: .75em 1em;
+            background-color: $primary-a;
+            color: $secondary-l;
+
+            border: solid 2px $secondary-l;
+
+            transition: all 150ms ease-in-out;
+
+            &:focus {
+                outline: none;
+                box-shadow: 0 0 10px 0 $secondary-a;
+                transform: scale(1.01);
+            }
+        }
     }
 }
+
+.hero-section {
+    width: 100%;
+    height: 100vh;
+    position: relative;
+    z-index: -1;
+
+    &-champ {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 10;
+
+        &-name {
+            font-size: clamp(5rem, 10vw, 7rem);
+            font-family: $title-font;
+            font-style: italic;
+            color: $secondary-b
+        }
+
+        &-title {
+            font-family: $title-font;
+            font-style: italic;
+            margin-top: -20px;
+        }
+    }
+
+    &-img, &-img img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+
+        & img {
+            opacity: .4;
+        }
+    }
+}
+
+.blackout-section {
+    width: 100%;
+    box-shadow: 0 0 5rem 5rem $primary-d;
+    background-color: $primary-d;
+    height: 20vh;
+    z-index: 1;
+}
+
+.lore-section {
+    width: 100%;
+    background-color: $primary-d;
+    padding: 3rem 1.5rem;
+
+    &-box {
+        width: calc(min(100%, 70ch));
+        background-color: $primary-b;
+        padding: 1rem 2rem;
+        margin: 0 auto;
+        outline: 1px solid $secondary-b;
+        outline-offset: 1rem;
+
+        &-header {
+            font-family: $title-font;
+            color: $secondary-b;
+            font-size: 2.5rem;
+            font-style: italic;
+        }
+
+        &-article-body {
+            font-size: 1.2rem;
+            line-height: 1.5;
+            text-align: left;
+            margin-bottom: 1rem;
+        }
+    }
+}
+
+.champion-section {
+    width: 100%;
+    height: 100vh;
+    position: relative;
+
+    &-skins {
+        position: absolute;
+        width: 100%; 
+        height: 100vh;
+
+        & img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        &-header {
+            position: absolute;
+            display: block;
+        }
+
+        &-handlers {
+            position: absolute;
+            display: none;
+
+            &.active {
+                display: block;
+            }
+        }
+    }
+
+    &-tabs {
+        width: calc(min(50ch, 100%));
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        position: absolute;
+        padding-inline: 2rem;
+
+        background-image: linear-gradient(90deg, $primary-b 0%, $primary-b 30%, rgba(0, 0, 0, 0) 100%);
+
+        &-navbar {
+            z-index: 10;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: .25em;
+
+            &-item-btn {
+                background: none;
+                padding: .3em 1.25em;
+                border: none;
+                color: white;
+
+                &.active {
+                    border-bottom: 3px solid $secondary-l;
+                    background-image: linear-gradient(0deg, $secondary-d 0%, rgba(0, 0, 0, 0) 70%, rgba(0, 0, 0, 0) 100%);
+                }
+            }
+
+            &.disabled {
+                display: none;
+            }
+        }
+
+        &-tab.stats, &-tab.abilities {
+            display: none;
+            min-height: 500px;
+            width: 100%;
+            
+        }
+
+        &-tab.stats {
+            justify-content: center;
+            flex-direction: column;
+        }
+
+        &-tab-info {
+
+            &-stat {
+                font-family: $title-font;
+                font-style: italic;
+                font-size: 1.3rem;
+            }
+
+            &-bar {
+                width: 100%;
+                height: 1rem;
+            
+                background-color: #666;
+                position: relative;
+                border-radius: 20px;
+            
+                &::after {
+                    content: '';
+                    position: absolute;
+            
+                    width: var(--value);
+                    height: 100%;
+                    background-color: $secondary-l;
+                    z-index: 1;
+                    border-radius: 20px;
+
+                }
+            }
+        }
+
+        &-tab.abilities {
+
+            .champion-section-tabs-tab-abilities {
+                height: 100%;
+
+                &-navbar {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    text-align: center;
+
+                    height: 40%;
+    
+                    gap: 1rem;
+
+                    &-item {
+
+                        font-family: $title-font;
+
+                        & h3 {
+                            margin-bottom: .5rem;
+                        }
+
+                        & img {
+                            transition: all 100ms ease-out;
+                        }
+
+                        &.show h3 {
+                            color: $secondary-b;
+                        }
+                        &.show img {
+                            outline: 2px solid $secondary-b;
+                            outline-offset: 3px;
+                        }
+                    }
+                }
+
+                &-info {
+                    &-header {
+                        font-size: 2rem;
+                        font-family: $title-font;
+                        font-style: italic;
+                        color: $secondary-b
+                    }
+
+                    &-body {
+                        font-size: 1.1rem;
+                        line-height: 1.5;
+                    }
+                }
+            }
+        }
+
+        &-tab.active {
+            display: flex;
+            gap: 2rem;
+        }
+    }
+}
+
+.active {
+    display: block;
+}
+
+

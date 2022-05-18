@@ -53,16 +53,74 @@ function renderPage(data) {
     for(let i = 0; i < stats.length; i++) {
         const bar = stats[i].lastElementChild
         const barHeader = stats[i].firstElementChild.textContent.toLowerCase()
-        console.log(data.info[barHeader]);
         bar.style.setProperty('--value', 10 * data.info[barHeader] + '%')
     }
 
     // abilities
+    let abilitiesInfo = {
+        passive: {
+            header: data.passive.name,
+            img: data.passive.image.full,
+            desc: data.passive.description
+        },
+        abilities: []
+    }
 
+    for(const ability of data.spells) {
+        abilityName = ability.name
+        abilityImage = ability.image.full
+        abilityDescription = ability.description
+
+        newAbility = {
+            header: abilityName,
+            img: abilityImage,
+            desc: abilityDescription
+        }
+
+        abilitiesInfo.abilities.push(newAbility);
+    }
+
+    const passiveImg = document.querySelector('.champion-section-tabs-tab-abilities-navbar-item.passive img')
+    passiveImg.setAttribute('src', `http://ddragon.leagueoflegends.com/cdn/12.9.1/img/passive/${abilitiesInfo.passive.img}`)
+
+    const abilitiesImgs = document.querySelectorAll('.champion-section-tabs-tab-abilities-navbar-item.ability img')
+    for(i = 0; i<abilitiesInfo.abilities.length; i++) {
+        abilitiesImgs[i].setAttribute('src', 'http://ddragon.leagueoflegends.com/cdn/12.9.1/img/spell/' + abilitiesInfo.abilities[i].img)
+    }
+
+    const allAbilities = document.querySelectorAll('.champion-section-tabs-tab-abilities-navbar-item')
+
+    //Execução padrão
+    const infoHeader = document.querySelector('.champion-section-tabs-tab-abilities-info-header')
+    const infoBody = document.querySelector('.champion-section-tabs-tab-abilities-info-body')
+    infoHeader.textContent = abilitiesInfo.passive.header
+    infoBody.textContent = abilitiesInfo.passive.desc
+    document.querySelector('.champion-section-tabs-tab-abilities-navbar-item.passive').classList.add('show')
+    
+    
+    allAbilities.forEach((ability, index) => {
+        ability.addEventListener("click", (e) => {
+            allAbilities.forEach(ability => {
+                ability.classList.remove('show')
+            })
+            ability.classList.add('show')
+
+            if (index === 0) {
+                infoHeader.textContent = abilitiesInfo.passive.header
+                infoBody.textContent = abilitiesInfo.passive.desc
+                return
+            }
+
+            infoHeader.textContent = abilitiesInfo.abilities[index-1].header
+            infoBody.textContent = abilitiesInfo.abilities[index-1].desc
+        })
+    });
+    
+    
 
     // skins
-    const skinHeader = document.querySelector('.champion-section-tabs-tab-skin-header')
-    const skinImage = document.querySelector('.champion-section-tabs-tab-skin-img')
+    const skinHeader = document.querySelector('.champion-section-skins-header')
+    const skinImage = document.querySelector('.champion-section-skins-img')
     let currentIndex = 0
 
     setSkin()
@@ -75,11 +133,8 @@ function renderPage(data) {
 
     function setSkin() {
         skinHeader.textContent = data.skins[currentIndex].name
-        let url = `http://ddragon.leagueoflegends.com/cdn/img/champion/splash/${currentChamp}_${currentIndex}.jpg`
+        let url = `http://ddragon.leagueoflegends.com/cdn/img/champion/splash/${currentChamp}_${data.skins[currentIndex].num}.jpg`
         skinImage.setAttribute('src', url)
-        skinImage.addEventListener("error", (e) => {
-            skinImage.setAttribute('src', `http://ddragon.leagueoflegends.com/cdn/img/champion/splash/${currentChamp}_0.jpg`)
-        })
     }
 
     function handlerSkins(e) {
@@ -103,4 +158,39 @@ function renderPage(data) {
         }
     }
 }
+
+
+const navItems = document.querySelectorAll('.champion-section-tabs-navbar-item-btn')
+
+navItems.forEach(item => {
+    item.addEventListener("click", (e) => {
+
+        navItems.forEach(navItem => {
+            navItem.classList.remove('active')
+        });
+
+        const navBar = document.querySelector('.champion-section-tabs-navbar')
+        const statsTab = document.querySelector('.champion-section-tabs-tab.stats')
+        const abilitiesTab = document.querySelector('.champion-section-tabs-tab.abilities')
+        const skinHandler = document.querySelector('.champion-section-skins-handlers')
+
+        navBar.classList.remove('disabled')
+        skinHandler.classList.remove('active')
+        statsTab.classList.remove('active')
+        abilitiesTab.classList.remove('active')
+
+        if(item.id === "stats") {
+            statsTab.classList.add('active')
+        } else if (item.id === "abilities") {
+            abilitiesTab.classList.add('active')
+        } else if (item.id === "skins") {
+            navBar.classList.add('disabled')
+            skinHandler.classList.add('active')
+        }
+
+        e.target.classList.add('active')
+    })
+});
+
+
 

@@ -11,7 +11,7 @@
 <body>
     <nav>
         <div class="search-bar">
-            <input type="text" name="champion_name" id="search-bar">
+            <input type="text" name="champion_name" id="search-bar" value="Aatrox" placeholder="Search...">
         </div>
     </nav>
 
@@ -45,26 +45,32 @@
             </div>
         </div>
 
-        <div class="theme-transition-section"></div>
+        <div class="blackout-section"></div>
 
         <div class="champion-section">
-            <div class="champion-section-background">
-                <img src="" alt="" class="champion-section-background-img">
-            </div>
 
-            <div class="champion-section-navbar">
-                <div class="champion-section-navbar-item">
-                    <button class="champion-section-navbar-item-btn active">Status</button>
-                </div>
-                <div class="champion-section-navbar-item">
-                    <button class="champion-section-navbar-item-btn">Abilities</button>
-                </div>
-                <div class="champion-section-navbar-item">
-                    <button class="champion-section-navbar-item-btn">Skins</button>
+            <div class="champion-section-skins">
+                <h3 class="champion-section-skins-header">Skin Name</h3>
+                <img src="" alt="" class="champion-section-skins-img">
+                <button id="close">X</button>
+                <div class="champion-section-skins-handlers">
+                    <button id="previous">«</button>
+                    <button id="next">»</button>
                 </div>
             </div>
 
             <div class="champion-section-tabs">
+                <div class="champion-section-tabs-navbar">
+                    <div class="champion-section-tabs-navbar-item">
+                        <button id="stats" class="champion-section-tabs-navbar-item-btn active">Stats</button>
+                    </div>
+                    <div class="champion-section-navbar-item">
+                        <button id="abilities" class="champion-section-tabs-navbar-item-btn">Abilities</button>
+                    </div>
+                    <div class="champion-section-navbar-item">
+                        <button id="skins" class="champion-section-tabs-navbar-item-btn">Skins</button>
+                    </div>
+                </div>
                 <div class="champion-section-tabs-tab stats active">
                     <div class="champion-section-tabs-tab-info">
                         <h4 class="champion-section-tabs-tab-info-stat">Attack</h4>
@@ -86,55 +92,35 @@
 
                 <div class="champion-section-tabs-tab abilities">
                     <div class="champion-section-tabs-tab-abilities">
-                        <div class="champion-section-tabs-tab-abilities-ability">
-                            <h4>Passive</h4>
-                            <div class="champion-section-tabs-tab-abilities-ability-header"></div>
-                            <div class="champion-section-tabs-tab-abilities-ability-img">
-                                <img src="" alt="">
-                            </div>
-                            <div class="champion-section-tabs-tab-abilities-ability-desc"></div>
-                        </div>
-                        <div class="champion-section-tabs-tab-abilities-ability">
-                            <h4>Q</h4>
-                            <div class="champion-section-tabs-tab-abilities-ability-header"></div>
-                            <div class="champion-section-tabs-tab-abilities-ability-img">
-                                <img src="" alt="">
-                            </div>
-                            <div class="champion-section-tabs-tab-abilities-ability-desc"></div>
-                        </div>
-                        <div class="champion-section-tabs-tab-abilities-ability">
-                            <h4>W</h4>
-                            <div class="champion-section-tabs-tab-abilities-ability-header"></div>
-                            <div class="champion-section-tabs-tab-abilities-ability-img">
-                                <img src="" alt="">
-                            </div>
-                            <div class="champion-section-tabs-tab-abilities-ability-desc"></div>
-                        </div>
-                        <div class="champion-section-tabs-tab-abilities-ability">
-                            <h4>E</h4>
-                            <div class="champion-section-tabs-tab-abilities-ability-header"></div>
-                            <div class="champion-section-tabs-tab-abilities-ability-img">
-                                <img src="" alt="">
-                            </div>
-                            <div class="champion-section-tabs-tab-abilities-ability-desc"></div>
-                        </div>
-                        <div class="champion-section-tabs-tab-abilities-ability">
-                            <h4>Ultimate</h4>
-                            <div class="champion-section-tabs-tab-abilities-ability-header"></div>
-                            <div class="champion-section-tabs-tab-abilities-ability-img">
-                                <img src="" alt="">
-                            </div>
-                            <div class="champion-section-tabs-tab-abilities-ability-desc"></div>
-                        </div>
-                    </div>
-                </div>
 
-                <div class="champion-section-tabs-tab skins">
-                    <h3 class="champion-section-tabs-tab-skin-header">Skin Name</h3>
-                    <img src="" alt="" class="champion-section-tabs-tab-skin-img">
-                    <div class="champion-section-tabs-tab-skin-handlers">
-                        <button id="previous">«</button>
-                        <button id="next">»</button>
+                        <div class="champion-section-tabs-tab-abilities-navbar">
+                            <div id="passive" class="champion-section-tabs-tab-abilities-navbar-item passive">
+                                <h3>Passive</h3>
+                                <img src="" alt="">
+                            </div>
+                            <div id="ability1" class="champion-section-tabs-tab-abilities-navbar-item ability">
+                                <h3>Q</h3>
+                                <img src="" alt="">
+                            </div>
+                            <div id="ability2" class="champion-section-tabs-tab-abilities-navbar-item ability">
+                                <h3>W</h3>
+                                <img src="" alt="">
+                            </div>
+                            <div id="ability3" class="champion-section-tabs-tab-abilities-navbar-item ability">
+                                <h3>E</h3>
+                                <img src="" alt="">
+                            </div>
+                            <div id="ability4" class="champion-section-tabs-tab-abilities-navbar-item ability">
+                                <h3>R</h3>
+                                <img src="" alt="">
+                            </div>
+                        </div>
+
+                        <div class="champion-section-tabs-tab-abilities-info">
+                            <h3 class="champion-section-tabs-tab-abilities-info-header">Skill Name</h3>
+                            <p class="champion-section-tabs-tab-abilities-info-body">Skill Body</p>
+                            
+                        </div>
                     </div>
                 </div>
             </div>
