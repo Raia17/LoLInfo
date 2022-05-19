@@ -1,8 +1,75 @@
 let currentChamp
 const searchBar = document.querySelector('#search-bar')
 searchBar.addEventListener("keypress", valueCheck)
+searchBar.addEventListener("input", loadAllChampsData)
 window.addEventListener("load", loadData('Aatrox'))
 
+async function loadAllChampsData(e) {
+    let inputValue = e.target.value
+    
+    try {
+        let res = await fetch(`http://ddragon.leagueoflegends.com/cdn/12.9.1/data/en_US/champion.json`)
+        let data = await res.json()
+
+        searchEngine(data.data, inputValue)
+    } catch (err) {
+        throw err
+    }
+}
+
+function searchEngine(data = {}, value) {
+    let max_lenght = 5
+    let currentLenght = 0
+
+    const suggestions = document.querySelector('.search-bar-suggestions')
+    suggestions.innerHTML = ''
+
+    if (value === '') return
+
+    for (const champion in data) {
+        if (Object.hasOwnProperty.call(data, champion)) {
+            if (currentLenght >= max_lenght) {
+                return
+            }
+
+            const champ = data[champion];
+            if (champ.id.toLowerCase().includes(value.toLowerCase()) || champ.name.toLowerCase().includes(value.toLowerCase())) {
+                createSearchItem(champ, suggestions)
+                currentLenght++
+            }
+
+            
+            
+        }
+    }
+}
+
+function createSearchItem(value, parent) {
+    const div = document.createElement('div')
+    const img = document.createElement('img')
+    const p = document.createElement('p')
+
+    div.appendChild(img)
+    div.appendChild(p)
+
+    div.classList.add('search-bar-suggestions-item')
+    img.classList.add('search-bar-suggestions-item-img')
+    p.classList.add('search-bar-suggestions-item-name')
+
+    img.setAttribute('src', `http://ddragon.leagueoflegends.com/cdn/12.9.1/img/champion/${value.image.full}`)
+
+    p.textContent = value.name
+    p.setAttribute('data-id', value.id)
+    p.setAttribute('data-name', value.name)
+
+    parent.appendChild(div)
+
+    div.addEventListener("click", (e) => {
+        loadData(p.getAttribute('data-id'))
+        parent.innerHTML = ''
+        searchBar.value = ''
+    })
+}
 
 
 function valueCheck(e) {
@@ -15,7 +82,8 @@ function valueCheck(e) {
     inputValue = inputValue.replace(" ", "")
 
     let character = inputValue.charAt(0).toUpperCase() + inputValue.slice(1)
-
+    e.target.value = ''
+    searchEngine({}, e.target.value)
     loadData(character)
 }
 
@@ -132,13 +200,17 @@ function renderPage(data) {
     nextHandler.addEventListener("click", handlerSkins)
 
     function setSkin() {
-        skinHeader.textContent = data.skins[currentIndex].name
+        if (data.skins[currentIndex].name != 'default') {
+            skinHeader.textContent = data.skins[currentIndex].name
+        } else {
+            skinHeader.textContent = currentChamp
+        }
+        
         let url = `http://ddragon.leagueoflegends.com/cdn/img/champion/splash/${currentChamp}_${data.skins[currentIndex].num}.jpg`
         skinImage.setAttribute('src', url)
     }
 
     function handlerSkins(e) {
-        console.log(e.target.id);
         if(e.target.id === "next") {
             if (currentIndex < data.skins.length - 1) {
                 currentIndex++
@@ -193,4 +265,21 @@ navItems.forEach(item => {
 });
 
 
+const closeBtn = document.querySelector('#close')
+closeBtn.addEventListener("click", (e) => {
+    navItems.forEach(item => {
+        item.classList.remove('active')
+        if (item.id === "stats") {
+            item.classList.add('active')
+        }
+    })
+
+    const navBar = document.querySelector('.champion-section-tabs-navbar')
+    const statsTab = document.querySelector('.champion-section-tabs-tab.stats')
+    const skinHandler = document.querySelector('.champion-section-skins-handlers')
+
+    statsTab.classList.add('active')
+    navBar.classList.remove('disabled')
+    skinHandler.classList.remove('active')
+})
 
