@@ -285,8 +285,8 @@ nav .search-bar-suggestions-item-name {
           justify-content: center;
   position: absolute;
   padding-inline: 2rem;
-  background-image: -webkit-gradient(linear, left top, right top, from(#101029), color-stop(30%, #101029), to(rgba(0, 0, 0, 0)));
-  background-image: linear-gradient(90deg, #101029 0%, #101029 30%, rgba(0, 0, 0, 0) 100%);
+  background-image: -webkit-gradient(linear, left top, right top, from(#101029), color-stop(30%, #101029), color-stop(60%, rgba(0, 0, 0, 0)));
+  background-image: linear-gradient(90deg, #101029 0%, #101029 30%, rgba(0, 0, 0, 0) 60%);
 }
 
 .champion-section-tabs-navbar {

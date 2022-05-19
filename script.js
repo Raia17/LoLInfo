@@ -8,7 +8,7 @@ async function loadAllChampsData(e) {
     let inputValue = e.target.value
     
     try {
-        let res = await fetch(`http://ddragon.leagueoflegends.com/cdn/12.9.1/data/en_US/champion.json`)
+        let res = await fetch(`https://ddragon.leagueoflegends.com/cdn/12.9.1/data/en_US/champion.json`)
         let data = await res.json()
 
         searchEngine(data.data, inputValue)
@@ -56,7 +56,7 @@ function createSearchItem(value, parent) {
     img.classList.add('search-bar-suggestions-item-img')
     p.classList.add('search-bar-suggestions-item-name')
 
-    img.setAttribute('src', `http://ddragon.leagueoflegends.com/cdn/12.9.1/img/champion/${value.image.full}`)
+    img.setAttribute('src', `https://ddragon.leagueoflegends.com/cdn/12.9.1/img/champion/${value.image.full}`)
 
     p.textContent = value.name
     p.setAttribute('data-id', value.id)
@@ -92,7 +92,7 @@ function valueCheck(e) {
 async function loadData(character) {
 
     try {
-        let res = await fetch(`http://ddragon.leagueoflegends.com/cdn/12.9.1/data/en_US/champion/${character}.json`)
+        let res = await fetch(`https://ddragon.leagueoflegends.com/cdn/12.9.1/data/en_US/champion/${character}.json`)
         let data = await res.json()
         currentChamp = character
         renderPage(data.data[character])
@@ -113,7 +113,7 @@ function renderPage(data) {
 
     champName.textContent = data.name
     champTitle.textContent = data.title
-    champHeroImage.setAttribute('src', `http://ddragon.leagueoflegends.com/cdn/img/champion/splash/${currentChamp}_0.jpg`)
+    champHeroImage.setAttribute('src', `https://ddragon.leagueoflegends.com/cdn/img/champion/splash/${currentChamp}_0.jpg`)
     champLore.textContent = data.lore
 
     // stats
@@ -149,11 +149,11 @@ function renderPage(data) {
     }
 
     const passiveImg = document.querySelector('.champion-section-tabs-tab-abilities-navbar-item.passive img')
-    passiveImg.setAttribute('src', `http://ddragon.leagueoflegends.com/cdn/12.9.1/img/passive/${abilitiesInfo.passive.img}`)
+    passiveImg.setAttribute('src', `https://ddragon.leagueoflegends.com/cdn/12.9.1/img/passive/${abilitiesInfo.passive.img}`)
 
     const abilitiesImgs = document.querySelectorAll('.champion-section-tabs-tab-abilities-navbar-item.ability img')
     for(i = 0; i<abilitiesInfo.abilities.length; i++) {
-        abilitiesImgs[i].setAttribute('src', 'http://ddragon.leagueoflegends.com/cdn/12.9.1/img/spell/' + abilitiesInfo.abilities[i].img)
+        abilitiesImgs[i].setAttribute('src', 'https://ddragon.leagueoflegends.com/cdn/12.9.1/img/spell/' + abilitiesInfo.abilities[i].img)
     }
 
     const allAbilities = document.querySelectorAll('.champion-section-tabs-tab-abilities-navbar-item')
@@ -206,7 +206,7 @@ function renderPage(data) {
             skinHeader.textContent = currentChamp
         }
         
-        let url = `http://ddragon.leagueoflegends.com/cdn/img/champion/splash/${currentChamp}_${data.skins[currentIndex].num}.jpg`
+        let url = `https://ddragon.leagueoflegends.com/cdn/img/champion/splash/${currentChamp}_${data.skins[currentIndex].num}.jpg`
         skinImage.setAttribute('src', url)
     }
 
