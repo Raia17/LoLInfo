@@ -1,28 +1,23 @@
 let currentChamp
-let globalChampData
 const searchBar = document.querySelector('#search-bar')
 searchBar.addEventListener("keypress", valueCheck)
-searchBar.addEventListener("input", searchEngine(event, globalChampData.data))
+searchBar.addEventListener("input", loadAllChampsData)
 window.addEventListener("load", loadData('Aatrox'))
 
-loadAllChampsData()
-
-async function loadAllChampsData() {
+async function loadAllChampsData(e) {
+    let inputValue = e.target.value
     
     try {
-        
         let res = await fetch(`https://ddragon.leagueoflegends.com/cdn/12.9.1/data/en_US/champion.json`)
-        globalChampData = await res.json()
-        
+        let data = await res.json()
+
+        searchEngine(data.data, inputValue)
     } catch (err) {
         throw err
     }
 }
 
-function searchEngine(e, data = {}) {
- 
-    let value = e.target.value
-    
+function searchEngine(data = {}, value) {
     let max_lenght = 5
     let currentLenght = 0
 
@@ -287,4 +282,3 @@ closeBtn.addEventListener("click", (e) => {
     navBar.classList.remove('disabled')
     skinHandler.classList.remove('active')
 })
-
