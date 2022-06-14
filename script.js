@@ -72,7 +72,6 @@ function createSearchItem(value, parent) {
 
 
 function valueCheck(e) {
-    console.log(e.target.value);
     if (e.key != "Enter") {
         return
     }
