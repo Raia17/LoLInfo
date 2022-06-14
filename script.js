@@ -12,7 +12,6 @@ async function loadAllChampsData() {
     try {
         let res = await fetch(`https://ddragon.leagueoflegends.com/cdn/12.9.1/data/en_US/champion.json`)
         let data = await res.json()
-        console.log(data);
         allChamps = data.data
     } catch (err) {
         throw err
@@ -29,8 +28,6 @@ function searchEngine(e) {
 
     if (value === '') return
 
-    console.log(allChamps);
-
     for (const champion in allChamps) {
         if (Object.hasOwnProperty.call(allChamps, champion)) {
             if (currentLenght >= max_lenght) {
@@ -42,9 +39,6 @@ function searchEngine(e) {
                 createSearchItem(champ, suggestions)
                 currentLenght++
             }
-
-            
-            
         }
     }
 }
@@ -78,6 +72,7 @@ function createSearchItem(value, parent) {
 
 
 function valueCheck(e) {
+    console.log(e.target.value);
     if (e.key != "Enter") {
         return
     }
@@ -87,15 +82,14 @@ function valueCheck(e) {
     inputValue = inputValue.replace(" ", "")
 
     let character = inputValue.charAt(0).toUpperCase() + inputValue.slice(1)
-    e.target.value = ''
-    searchEngine({}, e.target.value)
+    inputValue = ''
+    searchEngine(e)
     loadData(character)
 }
 
 
 
 async function loadData(character) {
-
     try {
         let res = await fetch(`https://ddragon.leagueoflegends.com/cdn/12.9.1/data/en_US/champion/${character}.json`)
         let data = await res.json()
