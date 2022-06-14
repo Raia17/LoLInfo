@@ -1,23 +1,26 @@
 let currentChamp
 const searchBar = document.querySelector('#search-bar')
 searchBar.addEventListener("keypress", valueCheck)
-searchBar.addEventListener("input", loadAllChampsData)
+searchBar.addEventListener("input", searchEngine)
+window.addEventListener("load", loadAllChampsData)
 window.addEventListener("load", loadData('Aatrox'))
 
-async function loadAllChampsData(e) {
-    let inputValue = e.target.value
+let allChamps = {}
+
+async function loadAllChampsData() {
     
     try {
         let res = await fetch(`https://ddragon.leagueoflegends.com/cdn/12.9.1/data/en_US/champion.json`)
         let data = await res.json()
-
-        searchEngine(data.data, inputValue)
+        console.log(data);
+        allChamps = data.data
     } catch (err) {
         throw err
     }
 }
 
-function searchEngine(data = {}, value) {
+function searchEngine(e) {
+    let value = e.target.value
     let max_lenght = 5
     let currentLenght = 0
 
@@ -26,13 +29,15 @@ function searchEngine(data = {}, value) {
 
     if (value === '') return
 
-    for (const champion in data) {
-        if (Object.hasOwnProperty.call(data, champion)) {
+    console.log(allChamps);
+
+    for (const champion in allChamps) {
+        if (Object.hasOwnProperty.call(allChamps, champion)) {
             if (currentLenght >= max_lenght) {
                 return
             }
 
-            const champ = data[champion];
+            const champ = allChamps[champion];
             if (champ.id.toLowerCase().includes(value.toLowerCase()) || champ.name.toLowerCase().includes(value.toLowerCase())) {
                 createSearchItem(champ, suggestions)
                 currentLenght++
