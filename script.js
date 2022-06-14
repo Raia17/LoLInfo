@@ -6,6 +6,7 @@ window.addEventListener("load", loadAllChampsData)
 window.addEventListener("load", loadData('Aatrox'))
 
 let allChamps = {}
+let suggestedChamp = new Array()
 
 async function loadAllChampsData() {
     
@@ -22,6 +23,10 @@ function searchEngine(e) {
     let value = e.target.value
     let max_lenght = 5
     let currentLenght = 0
+    
+    while(suggestedChamp.length) {
+        suggestedChamp.pop()
+    }
 
     const suggestions = document.querySelector('.search-bar-suggestions')
     suggestions.innerHTML = ''
@@ -36,6 +41,7 @@ function searchEngine(e) {
 
             const champ = allChamps[champion];
             if (champ.id.toLowerCase().includes(value.toLowerCase()) || champ.name.toLowerCase().includes(value.toLowerCase())) {
+                suggestedChamp.push(champ.id)
                 createSearchItem(champ, suggestions)
                 currentLenght++
             }
@@ -83,7 +89,7 @@ function valueCheck(e) {
     let character = inputValue.charAt(0).toUpperCase() + inputValue.slice(1)
     inputValue = ''
     searchEngine(e)
-    loadData(character)
+    loadData(suggestedChamp[0])
 }
 
 
@@ -95,7 +101,7 @@ async function loadData(character) {
         currentChamp = character
         renderPage(data.data[character])
     } catch (e) {
-        console.error(e);
+        console.error("O Champion não existe");
     }
 }
 
